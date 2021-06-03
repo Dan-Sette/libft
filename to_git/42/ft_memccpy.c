@@ -16,21 +16,17 @@ void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
 	char		*des;
 	const char	*s;
+	size_t		count;
 
+	count = 0;
 	s = (char *)src;
 	des = (char *)dest;
-	while (n > 0 && *s != c)
+	while (count < n)
 	{
-		*des = *s;
-		des++;
-		s++;
-		n--;
-	}
-	if (*s == c)
-	{
-		*des = *s;
-		des++;
-		return ((void *)des);
+		des[count] = s[count];
+		if ((unsigned char)s[count] == (unsigned char)c)
+			return ((char *)dest + (count + 1));
+		count++;
 	}
 	return (NULL);
 }
