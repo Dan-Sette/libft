@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/31 22:37:37 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/05/31 22:37:41 by dalves-s         ###   ########.fr       */
+/*   Created: 2021/06/04 18:07:34 by dalves-s          #+#    #+#             */
+/*   Updated: 2021/06/04 21:30:49 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*des;
-	char	*s;
-	size_t	i;
+	size_t	len;
 
-	des = (char *)dest;
-	s = (char *)src;
-	i = 0;
-	if (dest > src)
-	{
-		while (n > i++)
-		{
-			des[n - i] = s[n - i];
-		}
-	}
-	else
-	{
-		ft_memcpy(dest, src, n);
-	}
-	return (dest);
+	len = 0;
+	if (s1 == NULL || set == NULL)
+		return (NULL);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	len = ft_strlen(s1);
+	while (len && ft_strchr(set, s1[len]))
+		len--;
+	return (ft_substr(s1, 0, len + 1));
 }

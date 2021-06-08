@@ -21,7 +21,17 @@ SRC =	ft_bzero.c \
 		ft_toupper.c \
 		ft_tolower.c \
 		ft_strdup.c \
-		ft_calloc.c
+		ft_calloc.c \
+		ft_substr.c \
+		ft_strjoin.c \
+		ft_strtrim.c \
+		ft_itoa.c \
+		ft_strmapi.c \
+		ft_putchar_fd.c \
+		ft_putstr_fd.c \
+		ft_putendl_fd.c \
+		ft_putnbr_fd.c \
+		ft_split.c
 
 GCC = gcc -Wall -Wextra -Werror -g
 OBJECT = $(SRC:.c=.o)

@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/01 17:15:01 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/01 18:17:09 by dalves-s         ###   ########.fr       */
+/*   Created: 2021/06/04 17:37:06 by dalves-s          #+#    #+#             */
+/*   Updated: 2021/06/04 18:00:48 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		i;
-	char	*point;
+	char	*joined;
+	size_t	len_s1;
+	size_t	len_s2;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	point = (char *)s;
-	while (point[i] != '\0')
+	j = 0;
+	len_s1 = ft_strlen(s1) + 1;
+	len_s2 = ft_strlen(s2) + 1;
+	joined = (char *) malloc((len_s1 + len_s2) * sizeof(char));
+	if (joined == NULL)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		if (point[i] == c)
-			return (&point[i]);
+		joined[i] = s1[i];
 		i++;
 	}
-	if (c == '\0')
-		return (&point[i]);
-	return (NULL);
+	while (s2[j] != '\0')
+	{
+		joined[i] = s2[j];
+		j++;
+		i++;
+	}
+	return (joined);
 }
