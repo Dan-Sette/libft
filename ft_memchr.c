@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 22:37:02 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/07 20:47:26 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/09 12:07:07 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 void	*ft_memchr(const void *str, int c, size_t n)
 {
-	char	*s;
+	unsigned char	*s_cast;
+	unsigned char	c_cast;
 
-	s = (char *)str;
+	s_cast = (unsigned char *)str;
+	c_cast = (unsigned char)c;
 	while (n > 0)
 	{
-		if (*s == c)
-			return ((void *)s);
+		if (*s_cast == c_cast)
+			return ((void *)s_cast);
 		n--;
-		s++;
+		s_cast++;
 	}
 	return (NULL);
 }
