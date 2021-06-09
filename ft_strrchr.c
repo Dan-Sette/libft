@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 18:32:41 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/01 21:58:06 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/09 15:13:32 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,16 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int		a;
+	size_t		a;
 
-	a = 0;
-	while (s[a])
-		a++;
+	a = ft_strlen(s);
 	if (c == 0)
-		return ((char *)s + a);
-	a--;
-	while (a >= 0)
+		return (ft_strchr(s, '\0'));
+	while (a)
 	{
-		if (s[a] == c)
-			return ((char *)s + a);
 		a--;
+		if (s[a] == (unsigned char)c)
+			return ((char *)s + a);
 	}
 	return (0);
 }
