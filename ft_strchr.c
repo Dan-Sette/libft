@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 17:15:01 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/04 16:35:36 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/09 12:33:19 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	unsigned char	*point;
+	unsigned char	c_cast;
 
-	point = (unsigned char *)s;
-	while (*point != '\0')
+	c_cast = (unsigned char)c;
+	while (*s != '\0')
 	{
-		if (*point == c)
-			return ((char *)point);
-		point++;
+		if (*s == c_cast)
+			return ((char *)s);
+		s++;
 	}
-	if (c == '\0')
-		return ((char *)point);
+	if (c_cast == '\0')
+		return ((char *)s);
 	return (NULL);
 }
