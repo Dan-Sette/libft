@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 18:07:34 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/10 22:35:01 by dalves-s         ###   ########.fr       */
+/*   Created: 2021/06/11 15:46:03 by dalves-s          #+#    #+#             */
+/*   Updated: 2021/06/11 16:10:49 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	size_t	len;
+	t_list	*aux1;
+	t_list	*aux2;
 
-	len = 0;
-	if (s1 == NULL || set == NULL)
-		return (NULL);
-	while (*s1 && ft_strchr(set, *s1))
-		s1++;
-	len = ft_strlen(s1);
-	while (len && ft_strchr(set, s1[len]))
-		len--;
-	return (ft_substr(s1, 0, len + 1));
+	aux1 = *lst;
+	if (!aux1)
+		return ;
+	while (aux1 != NULL)
+	{
+		del(aux1->content);
+		aux2 = aux1->next;
+		free(aux1);
+		aux1 = aux2;
+	}
+	*lst = NULL;
 }

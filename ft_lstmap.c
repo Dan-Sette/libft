@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 18:07:34 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/10 22:35:01 by dalves-s         ###   ########.fr       */
+/*   Created: 2021/06/11 16:20:05 by dalves-s          #+#    #+#             */
+/*   Updated: 2021/06/11 17:01:37 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	len;
+	t_list	*aux;
+	t_list	*new;
 
-	len = 0;
-	if (s1 == NULL || set == NULL)
+	if (!f || !lst)
 		return (NULL);
-	while (*s1 && ft_strchr(set, *s1))
-		s1++;
-	len = ft_strlen(s1);
-	while (len && ft_strchr(set, s1[len]))
-		len--;
-	return (ft_substr(s1, 0, len + 1));
+	new = NULL;
+	while (lst != NULL)
+	{
+		aux = ft_lstnew(f(lst->content));
+		if (aux == NULL)
+		{
+			ft_lstclear(&aux, del);
+			return (NULL);
+		}
+		ft_lstadd_front(&new, aux);
+		lst = lst->next;
+	}
+	return (new);
 }
