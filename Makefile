@@ -32,7 +32,8 @@ SRC =	ft_bzero.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
 		ft_split.c \
-		ft_lstnew.c \
+
+BONUS =	ft_lstnew.c \
 		ft_lstadd_front.c \
 		ft_lstsize.c \
 		ft_lstlast.c \
@@ -42,8 +43,10 @@ SRC =	ft_bzero.c \
 		ft_lstiter.c \
 		ft_lstmap.c
 
-GCC = gcc -Wall -Wextra -Werror -g
+GCC = gcc
+FLAGS =  -Wall -Wextra -Werror
 OBJECT = $(SRC:.c=.o)
+OBJ_BONUS = $(BONUS:.c=.o)
 NAME = libft.a
 
 all:	$(NAME)
@@ -52,7 +55,13 @@ $(NAME):	$(OBJECT)
 	ar -rcs $(NAME) $(OBJECT)
 
 $(OBJECT):		$(SRC)
-	$(GCC) -c $(SRC)
+	$(GCC) $(FLAGS) -c $(SRC)
+
+bonus:	$(OBJ_BONUS)
+	ar -rcs $(NAME) $(OBJ_BONUS)
+
+$(OBJ_BONUS):	$(BONUS)
+	$(GCC) $(FLAGS) -c $(BONUS)
 
 clean:
 	rm -f $(OBJECT) a.out
@@ -62,4 +71,4 @@ fclean:	clean
 
 re:	fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:	all bonus clean fclean re
